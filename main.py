@@ -2,7 +2,7 @@ from pyscript import display
 # Restaurant Order System using Python Data Types
 
 # String data type
-restaurant_name = "Duo Brew"
+restaurant_name = "Uno Brew"
 owner_name = "Luisito Balajadia"
 
 # Integer data type
@@ -58,4 +58,4 @@ display(f"Open: {business_hours[0]} - {business_hours[1]}", target="openingHours
 
 
 # Display order type
-display(f"Dine-in Available", target="orderType")
+display(f"Dine-in & Takeout Available", target="orderType")

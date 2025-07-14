@@ -5,22 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.3.1/core.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
     <title>Food Ordering System</title>
     <style>
+        /* General Styles */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6ebf5 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 50px;
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            background: linear-gradient(to right, #0d6efd, #1e88e5);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 0.8rem 1rem;
+        }
+        
+        .navbar-brand {
+            color: white !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-link {
+            color: white !important;
+            padding: 8px 15px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link:focus {
+            color: #cfe2ff !important;
+            transform: translateY(-2px);
+        }
+        
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .active {
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .nav-item {
+            margin: 0 5px;
+        }
+
         .blue-theme {
             --bs-primary: #0d6efd;
             --bs-primary-rgb: 13, 110, 253;
             --bs-primary-bg-subtle: #cfe2ff;
         }
-        body {
-            background-color: #f8f9fa;
-        }
+        
         .order-container {
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
         }
+        
         .menu-item {
             border-left: 3px solid var(--bs-primary);
             margin-bottom: 15px;
@@ -28,6 +81,7 @@
             display: flex;
             align-items: center;
         }
+        
         .food-img {
             width: 80px;
             height: 80px;
@@ -36,16 +90,60 @@
             margin-right: 15px;
             border: 2px solid #dee2e6;
         }
+        
         .menu-text {
             flex-grow: 1;
         }
+        
         .price-tag {
             font-weight: bold;
             color: var(--bs-primary);
         }
+        
+        /* Back Button */
+        .back-btn {
+            background-color: #fd710d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .back-btn:hover {
+            background-color: #e5660c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
     </style>
 </head>
 <body class="blue-theme">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-coffee me-2"></i>Uno Brew</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ordering_form.html">Order Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_us.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
     <div class="container py-5">
         <div class="order-container p-4 mb-4">
             <h1 class="text-primary mb-4 text-center">Food Ordering System</h1>
@@ -130,24 +228,15 @@
             <div id="show" class="h4 text-primary mt-3"></div>
         </div>
     </div>
+    
     <center>
         <a href="index.html">
-            <button style="
-                background-color: #fd710d;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 5px;
-                font-weight: 500;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            " onmouseover="this.style.backgroundColor='#fd710d'" 
-            onmouseout="this.style.backgroundColor='#fd710d'">
-                Back
+            <button class="back-btn">
+                <i class="fas fa-arrow-left me-2"></i>Back to Home
             </button>
         </a>
-        </center>
+    </center>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script type="py" src="main2.py"></script>
 </body>
